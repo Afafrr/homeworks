@@ -12,7 +12,18 @@
   --btn-grey-text: #19191b;
   --footer-text-color: rgba(87, 87, 87, 1);
 }
-
+.dark-theme {
+  --primary-color: #0c151d;
+  --secondary-color: #171f26;
+  --contrast-color: #ffe071;
+  --title-text-color: #f1f2f4;
+  --secondary-text-color: #a3abb2;
+  --main-dec-btns: #3d3d3d;
+  --border-btn-color: #3e64aa;
+  --btn-grey: #0c151d;
+  --btn-grey-text: #a3abb2;
+  --footer-text-color: #a3abb2;
+}
 
 * {
   margin: 0;
