@@ -274,13 +274,22 @@
   color: var(--footer-text-color);
   font-size: 1.4rem;
 }
+.footer__scroll-top {
+  position: absolute;
+  width: 35px;
+  bottom: 25px;
+  animation: scroll-btn 1.5s ease-out infinite;
+}
+.footer__scroll-top svg {
+  fill: var(--btn-gray-text);
+}
 @keyframes scroll-btn {
   0% {
     opacity: 100%;
     transform: translateY(0px);
   }
   50% {
-    opacity: 20%;
+    opacity: 10%;
     transform: translateY(5px);
   }
   100% {
@@ -386,4 +395,3 @@
     font-size: 2.2rem;
   }
 }
-
