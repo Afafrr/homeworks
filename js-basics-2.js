@@ -304,17 +304,17 @@ function findUniq(arr) {
 // console.log(findUniq(["Aa", "aaa", "aaaaa", "BbBb", "Aaaa", "AaAaAa", "a"]));
 // // // 'BbBb');
 // console.log(findUniq(["abc", "acb", "bac", "foo", "bca", "cab", "cba"]));
-// // // 'foo');
-// // console.log(findUniq(["silvia", "vasili", "victor"]));
-// // // 'victor');
+// // 'foo');
+// console.log(findUniq(["silvia", "vasili", "victor"]));
+// // 'victor');
 // console.log(findUniq(["victor", "silvia", "vasili"]));
 // // // 'victor');
 // console.log(
 //   findUniq(["Tom Marvolo Riddle", "I am Lord Voldemort", "Harry Potter"])
 // );
+// // 'Harry Potter'))
 // console.log(findUniq(["    ", "a", " "]));
-// , 'a'
-// 'Harry Potter');
+// // , 'a'
 
 // 15. Sudoku Solver => https://www.codewars.com/kata/5296bc77afba8baa690002d7
 function sudoku(puzzle) {
@@ -328,28 +328,32 @@ function sudoku(puzzle) {
     }
     colUsedNums = colUsedNums.filter((col) => col !== 0);
     let usedNums = new Set([...rowUsedNums, ...colUsedNums]);
+
     let numsToUse = possibleNums.filter((num) => !usedNums.has(num));
-    console.log(possibleNums);
     return numsToUse;
   };
 
   const solvePuzzle = (row, col, outputPuzzle) => {
     const lastPuzzleIndex = outputPuzzle.length - 1;
-    if (row === lastPuzzleIndex && col === lastPuzzleIndex) return outputPuzzle;
-    if (col < lastPuzzleIndex && outputPuzzle[row][col] !== 0) {
-      solvePuzzle(row, col + 1, outputPuzzle);
-    }
-    if (row < lastPuzzleIndex && outputPuzzle[row][col] !== 0) {
-      solvePuzzle(row + 1, col, outputPuzzle);
-    }
-    let numsToUse = checkPossibleNums(row, col, outputPuzzle);
+    const puzzleFilledOut = !outputPuzzle.some((arr) => arr.includes(0));
 
-    if (outputPuzzle[row][col] === 0) {
+    if (row === lastPuzzleIndex && col === lastPuzzleIndex) {
+      if (puzzleFilledOut) return outputPuzzle;
+      solvePuzzle(0, 0, outputPuzzle);
+    }
+    console.log(outputPuzzle);
+    let numsToUse = checkPossibleNums(row, col, outputPuzzle);
+    if (puzzle[row][col] === 0 && numsToUse.length) {
       outputPuzzle[row][col] = numsToUse.shift();
     }
-    if(outputPuzzle.includes(0)) solvePuzzle
+    if (col < lastPuzzleIndex) {
+      solvePuzzle(row, col + 1, outputPuzzle);
+    }
+    if (row < lastPuzzleIndex) {
+      solvePuzzle(row + 1, 0, outputPuzzle);
+    }
   };
-
+  return solvePuzzle(0, 0, puzzle);
 }
 
 const puzzle = [
@@ -363,16 +367,22 @@ const puzzle = [
   [0, 0, 0, 4, 1, 9, 0, 0, 5],
   [0, 0, 0, 0, 8, 0, 0, 7, 9],
 ];
-console.log(sudoku(puzzle));
+// console.log(sudoku(puzzle));
+
 // var solution = [
 //   [5, 3, 4, 6, 7, 8, 9, 1, 2],
 //   [6, 7, 2, 1, 9, 5, 3, 4, 8],
 //   [1, 9, 8, 3, 4, 2, 5, 6, 7],
 //   [8, 5, 9, 7, 6, 1, 4, 2, 3],
 //   [4, 2, 6, 8, 5, 3, 7, 9, 1],
-//   [7, 1, 3, 9, 2, 4, 8, 5, 6],
-//   [9, 6, 1, 5, 3, 7, 2, 8, 4],
+//   [7, 1, 3, 9, 2, 1, 8, 5, 6],
+//   [9, 6, 1, 5, 3, 7, 1, 8, 4],
 //   [2, 8, 7, 4, 1, 9, 6, 3, 5],
-//   [3, 4, 5, 2, 8, 6, 1, 7, 9],
+//   [3, 4, 5, 2, 8, 6, 0, 7, 9],
 // ];
 
+// const includes = (solution) => {
+//   const puzzleFilledOut = !solution.some((arr) => arr.includes(0));
+//   return puzzleFilledOut;
+// };
+// console.log(includes(solution));
