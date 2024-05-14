@@ -103,13 +103,13 @@ function dividedBy(b) {
 // console.log(six(dividedBy(two())));
 
 // 6. Get the Middle Character => http://www.codewars.com/kata/get-the-middle-character
-function getMiddle(s) {
-  halfOfS = Math.ceil(s.length / 2);
+function getMiddle(word) {
+  halfOfWord = Math.ceil(word.length / 2);
 
   if (s.length % 2 === 0) {
-    return s[halfOfS - 1] + s[halfOfS];
+    return s[halfOfWord - 1] + s[halfOfWord];
   } else {
-    return s[halfOfS - 1];
+    return s[halfOfWord - 1];
   }
 }
 // console.log(getMiddle("test"));
@@ -140,10 +140,10 @@ function partitionOn(pred, items) {
 // console.log(items, i);
 
 // 8. Find the odd int => https://www.codewars.com/kata/find-the-odd-int/
-function findOdd(A) {
+function findOdd(numsArr) {
   let map = new Map();
 
-  A.forEach((item) => {
+  numsArr.forEach((item) => {
     if (map.has(item)) {
       let value = map.get(item);
       map.set(item, value + 1);
@@ -189,7 +189,7 @@ function findOutlier(integers) {
 
 // 10. zipWith => https://www.codewars.com/kata/zipwith
 function zipWith(fn, a0, a1) {
-  arr = [];
+  let arr = [];
   const minLen = Math.min(a0.length, a1.length);
 
   for (let i = 0; i < minLen; i++) {
@@ -405,12 +405,12 @@ function findAdditiveNumbers(num) {
 // findAdditiveNumbers('199100199') === ['1','99','100','199']
 // console.log(findAdditiveNumbers("112358"));
 // console.log(findAdditiveNumbers("199100199299"));
-console.log(findAdditiveNumbers("7916972717643273704501372383"));
+// console.log(findAdditiveNumbers("7916972717643273704501372383"));
 // console.log(findAdditiveNumbers("791697271764327370"));
 // console.log(findAdditiveNumbers("198001519815"));
-console.log(findAdditiveNumbers("12345"));
-console.log(findAdditiveNumbers("101"));
-console.log(findAdditiveNumbers("10020120"));
+// console.log(findAdditiveNumbers("12345"));
+// console.log(findAdditiveNumbers("101"));
+// console.log(findAdditiveNumbers("10020120"));
 
 // 16.Build Tower => https://www.codewars.com/kata/576757b1df89ecf5bd00073b
 function towerBuilder(nFloors) {
