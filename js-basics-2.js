@@ -323,39 +323,56 @@ function sudoku(puzzle) {
   const checkPossibleNums = (row, col, outputPuzzle) => {
     let rowUsedNums = outputPuzzle[row].filter((col) => col !== 0);
     let colUsedNums = [];
+    //check row and cols
     for (let i = 0; i < outputPuzzle.length; i++) {
       colUsedNums.push(outputPuzzle[i][col]);
     }
     colUsedNums = colUsedNums.filter((col) => col !== 0);
     let usedNums = new Set([...rowUsedNums, ...colUsedNums]);
-
+    //check 3x3 box
+    let rowCorner = Math.floor(row / 3) * 3;
+    let colCorner = Math.floor(col / 3) * 3;
+    for (let i = rowCorner; i < rowCorner + 3; i++) {
+      for (let j = colCorner; j < colCorner + 3; j++) {
+        if (outputPuzzle[i][j] !== 0) usedNums.add(outputPuzzle[i][j]);
+      }
+    }
     let numsToUse = possibleNums.filter((num) => !usedNums.has(num));
     return numsToUse;
   };
 
-  const solvePuzzle = (row, col, outputPuzzle) => {
-    const lastPuzzleIndex = outputPuzzle.length - 1;
-    const puzzleFilledOut = !outputPuzzle.some((arr) => arr.includes(0));
+  let zeroCellIndexesArr = [];
+  let possibleNumsInCell = [];
+  //get all indexes of to fill in cells
+  for (let i = 0; i < puzzle.length; i++) {
+    for (let j = 0; j < puzzle.length; j++) {
+      if (puzzle[i][j] === 0) zeroCellIndexesArr.push({ row: i, col: j });
+    }
+  }
+  //get all possible numbers in every cell
+  zeroCellIndexesArr.map((pair) => {
+    const { row, col } = pair;
+    const possibleNumsArr = checkPossibleNums(row, col, puzzle);
+    possibleNumsInCell.push(possibleNumsArr);
+  });
 
-    if (row === lastPuzzleIndex && col === lastPuzzleIndex) {
-      if (puzzleFilledOut) return outputPuzzle;
-      solvePuzzle(0, 0, outputPuzzle);
+  const solvePuzzle = (availableNumbersIndex) => {
+    const { row, col } = zeroCellIndexesArr[availableNumbersIndex];
+    if (availableNumbersIndex === possibleNumsInCell.length - 1) return true;
+
+    for (num of possibleNumsInCell[availableNumbersIndex]) {
+      console.log(num, possibleNumsInCell[availableNumbersIndex]);
+      puzzle[row][col] = num;
+      if (solvePuzzle(availableNumbersIndex + 1)) {
+        return true;
+      }
     }
-    console.log(outputPuzzle);
-    let numsToUse = checkPossibleNums(row, col, outputPuzzle);
-    if (puzzle[row][col] === 0 && numsToUse.length) {
-      outputPuzzle[row][col] = numsToUse.shift();
-    }
-    if (col < lastPuzzleIndex) {
-      solvePuzzle(row, col + 1, outputPuzzle);
-    }
-    if (row < lastPuzzleIndex) {
-      solvePuzzle(row + 1, 0, outputPuzzle);
-    }
+    puzzle[row][col] = 0;
+    return false;
   };
-  return solvePuzzle(0, 0, puzzle);
+  solvePuzzle(0);
+  return puzzle;
 }
-
 const puzzle = [
   [5, 3, 0, 0, 7, 0, 0, 0, 0],
   [6, 0, 0, 1, 9, 5, 0, 0, 0],
@@ -367,22 +384,15 @@ const puzzle = [
   [0, 0, 0, 4, 1, 9, 0, 0, 5],
   [0, 0, 0, 0, 8, 0, 0, 7, 9],
 ];
-// console.log(sudoku(puzzle));
+console.log(sudoku(puzzle));
 
-// var solution = [
-//   [5, 3, 4, 6, 7, 8, 9, 1, 2],
+// var solution =
+//   [5, 3, 4, 6, 7, 8, 9, 1, 2];
 //   [6, 7, 2, 1, 9, 5, 3, 4, 8],
 //   [1, 9, 8, 3, 4, 2, 5, 6, 7],
 //   [8, 5, 9, 7, 6, 1, 4, 2, 3],
 //   [4, 2, 6, 8, 5, 3, 7, 9, 1],
-//   [7, 1, 3, 9, 2, 1, 8, 5, 6],
-//   [9, 6, 1, 5, 3, 7, 1, 8, 4],
+//   [7, 1, 3, 9, 2, 4, 8, 5, 6],
+//   [9, 6, 1, 5, 3, 7, 2, 8, 4],
 //   [2, 8, 7, 4, 1, 9, 6, 3, 5],
-//   [3, 4, 5, 2, 8, 6, 0, 7, 9],
-// ];
-
-// const includes = (solution) => {
-//   const puzzleFilledOut = !solution.some((arr) => arr.includes(0));
-//   return puzzleFilledOut;
-// };
-// console.log(includes(solution));
+//   [3, 4, 5, 2, 8, 6, 1, 7, 9];
