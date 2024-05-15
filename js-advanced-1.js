@@ -168,5 +168,7 @@ class RandomDate {
 const date1 = moment("23/01/2021", "DD/MM/YYYY");
 const date2 = moment("23/02/2021", "DD/MM/YYYY");
 const randomDate = new RandomDate(date1, date2);
-console.log(randomDate.format("DD/MM/YY"));
+// console.log(randomDate.format("DD/MM/YY"));
 // 20/02/2021
+
+// 5. Merged Objects. => https://www.codewars.com/kata/merged-objects
