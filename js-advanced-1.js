@@ -172,3 +172,44 @@ const randomDate = new RandomDate(date1, date2);
 // 20/02/2021
 
 // 5. Merged Objects. => https://www.codewars.com/kata/merged-objects
+function objConcat(arrOfObj) {
+  let outputObj = {};
+
+  for (obj of arrOfObj) {
+    for (let [key, val] of Object.entries(obj)) {
+      outputObj[key] = val;
+    }
+  }
+  return outputObj;
+}
+
+// const a = { 1: "1", 2: "2", 3: "3" };
+// const b = { 3: "4", 5: "6", 6: "7", 7: "8" };
+// const c = { 5: "9", 8: "9", 6: "12", 23: "35" };
+// const o = [a, b, c];
+
+// console.log(objConcat(o));
+// { '1': '1','2': '2','3': '4','5': '9','6': '12','7': '8','8': '9','23':'35' }
+
+// 8. Human Readable Time => https://www.codewars.com/kata/52685f7382004e774f0001f7/train/javascript
+function humanReadable(seconds) {
+  let hoursPassed = Math.floor(seconds / (60 * 60));
+  let minutesPassed = Math.floor(seconds / 60 - hoursPassed * 60);
+  let secondsPassed = Math.floor(
+    seconds - (minutesPassed * 60 + hoursPassed * 60 * 60)
+  );
+  hoursPassed = ("0" + hoursPassed.toString()).slice(-2);
+  minutesPassed = ("0" + minutesPassed.toString()).slice(-2);
+  secondsPassed = ("0" + secondsPassed.toString()).slice(-2);
+  return ` ${hoursPassed}:${minutesPassed}:${secondsPassed}`;
+}
+// console.log(humanReadable(90));
+// // '00:01:30'
+// console.log(humanReadable(45296));
+// // '12:34:56'
+// console.log(humanReadable(86399));
+// // '23:59:59'
+// console.log(humanReadable(86400));
+// // '24:00:00'
+// console.log(humanReadable(359999));
+// // '99:59:59'
