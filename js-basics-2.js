@@ -342,32 +342,26 @@ function sudoku(puzzle) {
   };
 
   let zeroCellIndexesArr = [];
-  let possibleNumsInCell = [];
   //get all indexes of to fill in cells
   for (let i = 0; i < puzzle.length; i++) {
     for (let j = 0; j < puzzle.length; j++) {
       if (puzzle[i][j] === 0) zeroCellIndexesArr.push({ row: i, col: j });
     }
   }
-  //get all possible numbers in every cell
-  zeroCellIndexesArr.map((pair) => {
-    const { row, col } = pair;
-    const possibleNumsArr = checkPossibleNums(row, col, puzzle);
-    possibleNumsInCell.push(possibleNumsArr);
-  });
 
-  const solvePuzzle = (availableNumbersIndex) => {
-    const { row, col } = zeroCellIndexesArr[availableNumbersIndex];
-    if (availableNumbersIndex === possibleNumsInCell.length - 1) return true;
+  const solvePuzzle = (toFillIndex) => {
+    if (toFillIndex === zeroCellIndexesArr.length) return true;
+    const { row, col } = zeroCellIndexesArr[toFillIndex];
+    possibleNumsInCell = checkPossibleNums(row, col, puzzle);
 
-    for (num of possibleNumsInCell[availableNumbersIndex]) {
-      console.log(num, possibleNumsInCell[availableNumbersIndex]);
+    for (num of possibleNumsInCell) {
+      console.log(puzzle[0]);
       puzzle[row][col] = num;
-      if (solvePuzzle(availableNumbersIndex + 1)) {
+      if (solvePuzzle(toFillIndex + 1)) {
         return true;
       }
+      puzzle[row][col] = 0;
     }
-    puzzle[row][col] = 0;
     return false;
   };
   solvePuzzle(0);
