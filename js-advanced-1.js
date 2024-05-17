@@ -191,7 +191,27 @@ function objConcat(arrOfObj) {
 // console.log(objConcat(o));
 // { '1': '1','2': '2','3': '4','5': '9','6': '12','7': '8','8': '9','23':'35' }
 
-// 8. Human Readable Time => https://www.codewars.com/kata/52685f7382004e774f0001f7/train/javascript
+// 9. Partial Keys => https://www.codewars.com/kata/5e602796017122002e5bc2ed/javascript
+function partialKeys(obj) {
+  const protoObj = {};
+  for (const [key, value] of Object.entries(obj)) {
+    for (let i = 1; i < key.length; i++) {
+      const keySliced = key.slice(0, i);
+      protoObj[keySliced] = value;
+    }
+  }
+  obj.__proto__ = { ...protoObj };
+  return obj;
+}
+// let o = partialKeys({ abcd: 1 });
+// console.log(o.abcd === 1); // true
+// console.log(o.abc === 1); // true
+// console.log(o.ab === 1); // true
+// console.log(o.a === 1); // true
+// // o.b === 1; // false!
+// console.log(Object.keys(o)); // ['abcd']
+
+// 10. Human Readable Time => https://www.codewars.com/kata/52685f7382004e774f0001f7/train/javascript
 function humanReadable(seconds) {
   let hoursPassed = Math.floor(seconds / (60 * 60));
   let minutesPassed = Math.floor(seconds / 60 - hoursPassed * 60);
@@ -201,7 +221,7 @@ function humanReadable(seconds) {
   hoursPassed = ("0" + hoursPassed.toString()).slice(-2);
   minutesPassed = ("0" + minutesPassed.toString()).slice(-2);
   secondsPassed = ("0" + secondsPassed.toString()).slice(-2);
-  return ` ${hoursPassed}:${minutesPassed}:${secondsPassed}`;
+  return `${hoursPassed}:${minutesPassed}:${secondsPassed}`;
 }
 // console.log(humanReadable(90));
 // // '00:01:30'
