@@ -48,6 +48,23 @@ function timer() {
 // timer();
 
 // 5. Fetch API/XMLHttpRequest
-async function getRandomUser() {
-  // const response = 
+// located in /10-js-advanced-3/task-5-website
+
+// 6. Digit or not
+function isFirstCharDigit(string) {
+  return /^\d/.test(string);
 }
+// console.log(isFirstCharDigit("asidjnklae"));
+// console.log(isFirstCharDigit("24djnklae"));
+// console.log(isFirstCharDigit("a4djnklae"));
+
+// 7. Optional (advanced)
+function isPhoneNumber(string) {
+  const regex = /\+54 [0-9]{3}-[0-9]{4}-[0-9]{3}/;
+  return regex.test(string);
+}
+
+// console.log(isPhoneNumber("+54 123-1234-123"));
+// console.log(isPhoneNumber("+54 123-1234-000"));
+// console.log(isPhoneNumber("+54 123-456-789"));
+// console.log(isPhoneNumber("+54 123-123-123"));
