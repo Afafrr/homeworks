@@ -1,0 +1,44 @@
+.traffic-light__wrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.light__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 560px;
+  width: 240px;
+  border-radius: 60px;
+  background-color: rgba(88, 95, 104, 1);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.25),
+    24px 0px 0px 0px rgba(0, 0, 0, 0.1) inset;
+  z-index: 10;
+}
+.light__el {
+  position: absolute;
+  top: -32px;
+  height: 378px;
+  width: 120px;
+  border-radius: 40px;
+  background-color: rgba(65, 68, 71, 1);
+}
+.lights__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  height: 408px;
+  width: 120px;
+}
+.light {
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  background-color: rgba(91, 91, 91, 1);
+  box-shadow: 10px 0px 0px 0px rgba(0, 0, 0, 0.1) inset;
+}
