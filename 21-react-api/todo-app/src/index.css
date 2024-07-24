@@ -1,0 +1,112 @@
+:root {
+  font-family: "Hind Siliguri", sans-serif !important;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 62.5%;
+
+  background: linear-gradient(
+    116.67deg,
+    rgba(140, 114, 183, 1),
+    rgba(255, 255, 255, 1)
+  );
+  --btn-bgc: rgba(82, 117, 160, 1);
+  --btn-bgc__hover: rgb(66, 95, 131);
+  --btn-contrast: rgba(255, 255, 255, 1);
+  --input-primary: rgba(236, 243, 255, 1);
+  --input-text: rgba(0, 0, 0, 0.6);
+  --error-color: red;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-size: 1.6rem;
+}
+.todo__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 50px 10px;
+}
+.todo__create-task-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65px;
+  width: 100%;
+  margin-bottom: 81px;
+}
+.todo__input-wrapper {
+  width: fit-content;
+  margin-left: 88px;
+}
+.todo__input {
+  display: flex;
+  align-items: center;
+  height: 65px;
+  width: 100%;
+  max-width: 554px;
+  min-width: 100px;
+  padding: 0;
+  padding-left: 88px;
+  line-height: 51.74px;
+  border: none;
+  background-color: var(--input-primary);
+  color: var(--input-text);
+  font-size: 3.2rem;
+}
+.todo__task-list {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+.todo__task {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 47px;
+  width: 100%;
+}
+.todo__clear-btn {
+  margin-bottom: 70px;
+  padding: 5px 70px;
+  font-size: 2.5rem;
+}
+.todo-task__img-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.todo-task__img {
+  height: 65px;
+  cursor: pointer;
+}
+.create-task__button {
+  height: 100%;
+  width: fit-content;
+}
+.create-task__button-text {
+  top: 5px;
+  font-size: 3.2rem;
+  margin: 6px 42px 7px 22px;
+}
+.todo__error-msg {
+  position: absolute;
+  top: 60px;
+  font-size: 3rem;
+  color: var(--error-color);
+}
+
+.btn {
+  cursor: pointer;
+  color: var(--btn-contrast);
+  background-color: var(--btn-bgc);
+}
+.btn:hover {
+  background-color: var(--btn-bgc__hover);
+}
+@media (width < 576px) {
+  .todo__clear-btn {
+    padding: 5px 10vw;
+  }
+}
