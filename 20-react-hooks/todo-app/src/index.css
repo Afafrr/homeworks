@@ -3,7 +3,6 @@
   font-weight: 400;
   font-style: normal;
   font-size: 62.5%;
-
   background: linear-gradient(
     116.67deg,
     rgba(140, 114, 183, 1),
@@ -15,7 +14,6 @@
   --input-text: rgba(0, 0, 0, 0.6);
   --error-color: red;
 }
-
 body {
   min-height: 100vh;
   margin: 0;
@@ -66,7 +64,6 @@ body {
   margin-bottom: 47px;
   width: 100%;
 }
-
 .todo-task__img-wrapper {
   display: flex;
   flex-wrap: nowrap;

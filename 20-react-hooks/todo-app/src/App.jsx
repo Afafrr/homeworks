@@ -1,21 +1,20 @@
 import { useState, useEffect } from "react";
-import { CreateTodoTask } from "./Components/CreateTodoTask";
-import { Task } from "./Components/Task";
+import { CreateTodoTask } from "./components/CreateTodoTask";
+import { Task } from "./components/Task";
 import { v4 as uuidv4 } from "uuid";
-import { ErrorMessage } from "./Components/ErrorMessage";
+import { ErrorMessage } from "./components/ErrorMessage";
 
 function App() {
   const [taskList, setTaskList] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
   const taskState = { taskList, setTaskList };
-  
+
   useEffect(() => {
     const storageTaskList = JSON.parse(localStorage.getItem("taskList"));
-    if (storageTaskList.length > 0) {
+    if (storageTaskList && storageTaskList.length > 0) {
       setTaskList(storageTaskList);
     }
   }, []);
-
   useEffect(() => {
     if (taskList.length > 0) {
       localStorage.setItem("taskList", JSON.stringify(taskList));

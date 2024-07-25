@@ -1,14 +1,13 @@
 import { useState, useRef, useEffect } from "react";
+import { taskValidation } from "../helpers/taskValidation";
 import deleteImg from "../assets/delete.png";
 import writeImg from "../assets/write.png";
-import { taskValidation } from "../helpers/taskValidation";
 
 export const Task = ({ task, taskState, setErrorMsg }) => {
   const { taskList, setTaskList } = taskState;
   const [isDisabled, setIsDisabled] = useState(true);
   const [newTask, setNewTask] = useState(task.value);
   const inputRef = useRef(null);
-  const liRef = useRef();
 
   //fun to handle whether task is checked
   const handleTaskChecked = () => {
@@ -42,12 +41,10 @@ export const Task = ({ task, taskState, setErrorMsg }) => {
       setTaskList(taskListValueUpdate);
     }
   };
-
   //set focus after update button click
   useEffect(() => {
     inputRef.current && inputRef.current.focus();
   }, [isDisabled]);
-
   //makes input possible to change
   const handleUpdateClick = () => {
     setIsDisabled(!isDisabled);

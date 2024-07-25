@@ -13,7 +13,6 @@ export const CreateTodoTask = ({ taskState, setErrorMsg }) => {
 
     if (taskListIncludes)
       validationOutput = "Task already exists in TODO list!";
-
     if (!validationOutput && !taskListIncludes) {
       setTaskList([...taskList, { value: taskInput, isChecked: false }]);
     } else {
