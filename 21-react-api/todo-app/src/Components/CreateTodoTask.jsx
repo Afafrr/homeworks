@@ -16,7 +16,6 @@ export const CreateTodoTask = () => {
     setErrorMsg("");
     let validation = validate(taskInput);
     const taskListIncludes = taskList.some((item) => item.text === taskInput);
-
     if (taskListIncludes) validation = "Task already exists in TODO list!";
     if (!validation) {
       dispatch({

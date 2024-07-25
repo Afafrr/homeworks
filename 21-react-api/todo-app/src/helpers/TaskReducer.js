@@ -6,7 +6,6 @@ export const ACTIONS = {
   REPLACE: "replace",
   DEL_CHECKED: "del_checked",
 };
-
 export function tasksReducer(taskList, action) {
   switch (action.type) {
     case ACTIONS.ADD: {

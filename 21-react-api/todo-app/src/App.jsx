@@ -6,10 +6,10 @@ import {
   useMemo,
   useCallback,
 } from "react";
-import { CreateTodoTask } from "./Components/CreateTodoTask";
-import { Task } from "./Components/Task";
+import { CreateTodoTask } from "./components/CreateTodoTask";
+import { Task } from "./components/Task";
 import { v4 as uuidv4 } from "uuid";
-import { ErrorMessage } from "./Components/ErrorMessage";
+import { ErrorMessage } from "./components/ErrorMessage";
 import { TaskContext, TaskDispatchContext } from "./helpers/TasksContext";
 import { tasksReducer } from "./helpers/TaskReducer";
 import { ACTIONS } from "./helpers/TaskReducer";
@@ -25,7 +25,6 @@ function App() {
     setErrorMsg("");
     dispatch({ type: ACTIONS.DEL_CHECKED });
   }, [dispatch]);
-
   //handling LOCAL STORAGE
   useEffect(() => {
     dispatch({ type: ACTIONS.REPLACE, value: storage });
@@ -38,7 +37,6 @@ function App() {
     () => tasks.map((task) => <Task task={task} key={uuidv4()} />),
     [tasks]
   );
-
   return (
     <TaskContext.Provider value={tasks}>
       <TaskDispatchContext.Provider value={dispatch}>
@@ -56,5 +54,4 @@ function App() {
     </TaskContext.Provider>
   );
 }
-
 export default App;
