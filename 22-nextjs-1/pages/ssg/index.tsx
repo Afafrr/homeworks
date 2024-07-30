@@ -1,7 +1,7 @@
 import { Avatar } from "@/types/types";
 import { Tiles } from "@/components/Tiles";
 
-export const GetStaticProps = async () => {
+export const getStaticProps = async () => {
   const num = 5;
   const url = `https://tinyfac.es/api/data?limit=${num}&quality=0`;
   const res = await fetch(url);
