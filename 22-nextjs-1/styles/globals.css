@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
+}
+:root {
+  --primary-color: rgba(2, 204, 103, 1);
+  --contrast-color: rgba(255, 255, 255, 1);
+}
